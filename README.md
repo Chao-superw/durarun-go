@@ -8,6 +8,14 @@ Developer preview for macOS and Linux.
 
 ![Local Go SDK architecture](docs/assets/go-sdk-architecture-v2.en.svg)
 
+## Install the SDK
+
+From your Go project, install the [current preview](https://github.com/Chao-superw/durarun-go/releases/tag/v0.1.0-preview).
+
+```sh
+go get github.com/Chao-superw/durarun-go/runtime@v0.1.0-preview
+```
+
 ## Quickstart
 
 Use Go 1.26 or later on macOS or Linux. From the root of this checkout:
@@ -29,19 +37,6 @@ Open `report.md` in the workspace printed by the runner. It should contain the r
 
 ## Integrate your Agent
 
-Once the preview tag is published, add the SDK to your Go module:
-
-```sh
-go get github.com/Chao-superw/durarun-go/runtime@v0.1.0-preview
-```
-
-Before release, use a local checkout in your application's `go.mod`:
-
-```go
-require github.com/Chao-superw/durarun-go v0.0.0
-replace github.com/Chao-superw/durarun-go => /absolute/path/to/durarun-go
-```
-
 Import `github.com/Chao-superw/durarun-go/runtime` and initialize it with `Config{Durable: true}`. Call `Run` around your Agent entry point, use `Step` with stable IDs for recoverable work, and call `Checkpoint` between steps. Save any state later steps need in the runner workspace.
 
 The checkpoint stores workspace files and step history. On resume, the Agent starts from its entry point and the SDK skips steps completed in the restored checkpoint. Work after that checkpoint may run again. Use application-level idempotency for external writes and other side effects.
@@ -51,6 +46,8 @@ See the [integration guide](docs/go-sdk-preview.md) and the [runnable Go example
 ## Tests
 
 Run `go test ./...` from this directory.
+
+[Contributing](CONTRIBUTING.md) · [Security policy](SECURITY.md)
 
 ## License
 

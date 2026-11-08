@@ -8,6 +8,14 @@ DuraRun 提供 Go SDK 和本地 Runner。Agent 可以保存检查点，进程中
 
 ![Go SDK 本地架构](docs/assets/go-sdk-architecture-v2.zh-CN.svg)
 
+## 安装 SDK
+
+在你的 Go 项目中安装[当前预览版](https://github.com/Chao-superw/durarun-go/releases/tag/v0.1.0-preview)。
+
+```sh
+go get github.com/Chao-superw/durarun-go/runtime@v0.1.0-preview
+```
+
 ## 快速开始
 
 在 macOS 或 Linux 上使用 Go 1.26 或更高版本。在源码目录下运行：
@@ -29,19 +37,6 @@ SDK_EXAMPLE_PAUSE=1 ./bin/durarun-local run -state ./agent-run -- ./bin/sdk-agen
 
 ## 接入自己的 Agent
 
-预览版标签发布后，在你的 Go 项目中运行：
-
-```sh
-go get github.com/Chao-superw/durarun-go/runtime@v0.1.0-preview
-```
-
-发布前，可在应用的 `go.mod` 中引用本地源码：
-
-```go
-require github.com/Chao-superw/durarun-go v0.0.0
-replace github.com/Chao-superw/durarun-go => /absolute/path/to/durarun-go
-```
-
 导入 `github.com/Chao-superw/durarun-go/runtime`，用 `Config{Durable: true}` 初始化 SDK。用 `Run` 包住 Agent 入口，用具有稳定 ID 的 `Step` 标记可恢复的步骤，在步骤之间调用 `Checkpoint`。把后续步骤需要的状态写入 Runner 的工作目录。
 
 Checkpoint 保存工作目录文件和步骤记录。恢复时，Agent 从入口重新执行，SDK 跳过恢复点里已完成的步骤。恢复点之后的操作可能重跑，外部写入和其他有副作用的操作需要由应用保证幂等。
@@ -51,6 +46,8 @@ Checkpoint 保存工作目录文件和步骤记录。恢复时，Agent 从入口
 ## 测试
 
 在当前目录运行 `go test ./...`。
+
+[贡献指南](CONTRIBUTING.md) · [安全报告](SECURITY.md)
 
 ## 许可证
 

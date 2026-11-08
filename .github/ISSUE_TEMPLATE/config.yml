@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security issue privately
+    url: https://github.com/Chao-superw/durarun-go/security/advisories/new
+    about: Use this for vulnerabilities rather than opening a public issue.
