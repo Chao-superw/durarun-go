@@ -1,0 +1,29 @@
+# Build artifacts
+bin/
+_output/
+artifacts/
+agentctl
+*.exe
+*.test
+
+# Dependency vendoring
+vendor/
+
+# Test coverage and Python test bytecode
+cover.out
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local quickstart state
+/agent-run/
